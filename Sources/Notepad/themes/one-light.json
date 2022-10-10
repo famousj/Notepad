@@ -1,0 +1,44 @@
+{
+    "name": "One",
+    "style": "Light",
+    "author": {
+        "name": "Rudd Fawcett",
+        "email": "rudd.fawcett@gmail.com"
+    },
+    "version": "1.1",
+    "variables": {
+        "boldFont": "not implemented yet"
+    },
+    "editor": {
+        "backgroundColor": "#ffffff",
+        "tintColor": "#000000"
+    },
+    "styles": {
+        "h1": {
+            "font": "AnonymousPro-Bold",
+        },
+        "h2": {
+            "font": "AnonymousPro-Bold",
+        },
+        "h3": {
+            "font": "AnonymousPro-Bold",
+        },
+        "body": {
+            "font": "AnonymousPro-Regular",
+            "color": "#000000",
+            "size": 18
+        },
+        "bold": {
+            "font": "AnonymousPro-Bold",
+        },
+        "italic": {
+            "font": "AnonymousPro-Italic",
+        },
+        "code": {
+            "color": "#888888"
+        },
+        "url": {
+            "color": "#3333ff"
+        }
+    }
+}
