@@ -45,43 +45,15 @@ public struct Theme {
     /// Build a theme from a JSON theme file.
     ///
     /// - parameter name: The name of the JSON theme file.
-    ///
     /// - returns: The Theme.
     public init(_ name: String) {
-        let bundle = Bundle(for: Notepad.self)
-        
-        let path: String
-        
-        if let path1 = bundle.path(forResource: "Notepad.framework/themes/\(name)", ofType: "json") {
-            
-            path = path1
-        }
-        else if let path2 = bundle.path(forResource: "Notepad.framework/\(name)", ofType: "json") {
-            
-            path = path2
-        }
-        else if let path3 = bundle.path(forResource: "themes/\(name)", ofType: "json") {
-
-            path = path3
-        }
-        else if let path4 = bundle.path(forResource: name, ofType: "json") {
-            
-            path = path4
-        }
-        else {
-            
+        guard let url = Bundle.module.url(forResource: name, withExtension: "json") else {
             print("[Notepad] Unable to load your theme file.")
             assertionFailure()
             return
         }
         
-        if let data = convertFile(path) {
-            configure(data)
-        }
-    }
-    
-    public init(themePath: String) {
-        if let data = convertFile(themePath) {
+        if let data = convertFile(url) {
             configure(data)
         }
     }
@@ -189,9 +161,9 @@ public struct Theme {
     /// - parameter path: The path to the JSON file.
     ///
     /// - returns: The new dictionary.
-    func convertFile(_ path: String) -> [String: AnyObject]? {
+    func convertFile(_ path: URL) -> [String: AnyObject]? {
         do {
-            let json = try String(contentsOf: URL(fileURLWithPath: path), encoding: .utf8)
+            let json = try String(contentsOf: path, encoding: .utf8)
             if let data = json.data(using: .utf8) {
                 do {
                     return try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]
