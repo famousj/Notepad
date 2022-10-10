@@ -10,10 +10,17 @@
 import UIKit
 
 public class Notepad: UITextView {
+    
+    public var theme: Theme? {
+        get {
+            storage.theme
+        }
+        set {
+            storage.theme = newValue
+        }
+    }
 
     var storage: Storage = Storage()
-
-
 
     /// Creates a new Notepad.
     ///
