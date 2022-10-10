@@ -86,10 +86,10 @@ extension String {
 
 extension UniversalFont {
     func with(traits: String, size: CGFloat) -> UniversalFont? {
-        guard let traits = getTraits(from: traits) else {
+        guard let traits = getTraits(from: traits),
+              let descriptor = fontDescriptor.withSymbolicTraits(traits) else {
             return self
         }
-        let descriptor = fontDescriptor.withSymbolicTraits(traits)
         return UniversalFont(descriptor: descriptor, size: size)
     }
     
